@@ -1,14 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-// petit exercice : ajouter une Google Font
-/*
-const inter = Inter({
-  variable: "--inter",
-  subsets: ['latin']
-});
-*/
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,15 +12,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// petit exercice : ajouter des MetaData, exemple les OpenGraph et Twitter Card
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  colorScheme: "dark light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "Vision Ka | opticien à Paris",
   description: "+ de 300 marques de lunettes de soleil et de vue à Paris 3ème",
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
-  // colorScheme: 'dark',
-  //  manifest: '/favicon/site.webmanifest',
-  icons: { icon: ['/favicon/favicon-32x32.png', '/favicon/favicon-16x16.png'], apple: '/favicon/apple-touch-icon.png' },
+  icons: { icon: ['/favicon/favicon-32x32.png'], apple: '/favicon/apple-touch-icon.png' },
   openGraph: {
     type: 'website',
     siteName: "Vision Ka",

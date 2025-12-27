@@ -1,9 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export default function Home() {
   return (
-    <>
-    <Button>
-      Clique moi</Button></>
+    <ThemeProvider>
+      <Header />
+      <Footer />
+    </ThemeProvider>
   );
 }
