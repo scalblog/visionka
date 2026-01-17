@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Moon } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
+import ScheduleDialog from "./schedule-dialog";
 
 export function Header() {
   return (
@@ -21,9 +22,17 @@ export function Header() {
                 <motion.a key={item} href={`#${item.toLowerCase()}`} className="text-foreground/70 hover:text-foreground transition-colors" whileHover={{ y: -2, color: "var(--accent)" }}>{item}</motion.a>
               ))}
             </nav>
-            <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="p-3 glass rounded-full hover:bg-white/20 transition-color" >
-              <Moon className="w-5 h-5"></Moon>
-            </motion.button>
+            <div className="flex items-center">
+              <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="p-3 glass rounded-full hover:bg-white/20 transition-color mr-2">
+                <Moon className="w-5 h-5"></Moon>
+              </motion.button>
+              <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="p-3 glass rounded-full hover:bg-white/20 transition-color">
+                <Sun className="w-5 h-5"></Sun>
+              </motion.button>
+              <div className="pl-4">
+                <ScheduleDialog />
+              </div>
+            </div>
           </div>
         </div>
       </motion.header>
