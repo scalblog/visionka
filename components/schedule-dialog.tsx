@@ -65,7 +65,7 @@ const ScheduleDialog = () => {
               </motion.div>
             </DialogPrimitive.Overlay>
             <DialogPrimitive.Content asChild>
-              <motion.div className='fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-2xl bg-white p-6 shadow-2xl border border-zinc-200 duration-200'>
+              <motion.div className='pascal-glass fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-2xl p-6 shadow-2xl border border-zinc-200 duration-200'>
                 <div className='flex flex-col space-y-4'>
                   <div className="space-y-1.5 pb-4 text-center sm:text-left ">
                     <DialogPrimitive.Title>Prendre Rendez Vous</DialogPrimitive.Title>
@@ -76,19 +76,19 @@ const ScheduleDialog = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2 ">
                       <Label htmlFor="firstName">Prénom</Label>
-                      <input {...register("firstName")} type="text" className='flex h-10 w-full rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-sm placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 transition-all cursor-pointer' placeholder='Prénom'></input>
+                      <input {...register("firstName")} type="text" className='bg-white flex h-10 w-full rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-sm placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 transition-all cursor-pointer' placeholder='Prénom'></input>
                       {errors.firstName && (<span className="text-xs text-red-500">{errors.firstName.message}</span>)}
                     </div>
                     <div className="space-y-2 ">
                       <Label htmlFor="lastName">Nom</Label>
-                      <input {...register("lastName")} type="text" className='flex h-10 w-full rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-sm placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 transition-all cursor-pointer' placeholder='Nom'></input>
+                      <input {...register("lastName")} type="text" className='bg-white flex h-10 w-full rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-sm placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 transition-all cursor-pointer' placeholder='Nom'></input>
                       {errors.lastName && (<span className="text-xs text-red-500">{errors.lastName.message}</span>)}
                     </div>
                   </div>
                   <div className='space-y-2'>
                     <div className="space-y-2 ">
                       <Label htmlFor="email">Email</Label>
-                      <input {...register("email")} type="email" className='flex h-10 w-full rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-sm placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 transition-all cursor-pointer' placeholder='Nom'></input>
+                      <input {...register("email")} type="email" className='bg-white flex h-10 w-full rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-sm placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-400 transition-all cursor-pointer' placeholder='Nom'></input>
                       {errors.email && (<span className="text-xs text-red-500">{errors.email.message}</span>)}
                     </div>
                   </div>
@@ -96,7 +96,7 @@ const ScheduleDialog = () => {
                     <Label htmlFor="date">Date préférée</Label>
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button variant="outline" className={cn("w-full justify-start text-left font-normal border-zinc-300 bg-transparent cursor-pointer hover:bg-zinc-300 hover:text-zinc-900 cursor-pointer text-zinc-900")}>
+                        <Button variant="outline" className={cn("w-full justify-start text-left font-normal border-zinc-300 bg-transparent cursor-pointer hover:bg-zinc-300 hover:text-zinc-900 cursor-pointer text-zinc-900 bg-white")}>
                           <CalendarIcon className='mr-2 h-4 w-4 opacity-50' />
                           <span>Choisir une date</span>
                         </Button>

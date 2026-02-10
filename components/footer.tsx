@@ -55,7 +55,7 @@ export function Footer() {
     }
   ]
   return (
-    <footer className="fixed bottom-0 w-full flex justify-between items-center gap-8 p-4 m-4">
+    <footer className="w-full flex justify-between items-center gap-8 p-4 m-4">
       <ul className="flex flex-col">
         <motion.li initial="hidden" animate="hidden" whileHover="visible" className="inline-flex"><motion.span className="relative"><ArrowRight /></motion.span><motion.span>Nous contacter</motion.span></motion.li>
         <motion.li initial="hidden" animate="hidden" whileHover="visible" className="inline-flex"><motion.span className="relative"><ArrowRight /></motion.span><motion.span>Où nous trouver à Paris</motion.span></motion.li>
