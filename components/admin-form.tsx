@@ -34,7 +34,6 @@ const AdminForm = () => {
       password: formData.get('password')
     });
 localStorage.setItem('token', response.data.token) // mauvaise pratique : plutot useContext, useReducer (à la place de Redux rtk)
-setValue('token', response.data.token); // moins correct non ?      
 
 // if(response.message) {
 
