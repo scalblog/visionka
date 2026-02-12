@@ -7,6 +7,8 @@ import { Button } from './ui/button';
 import { Label } from './ui/label';
 import axios from 'axios';
 import { Toaster, toast } from 'sonner';
+import { useAuthContext } from '@/lib/auth-Context';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   email: z.string().email("Veuillez saisir un email valide"),
@@ -20,28 +22,19 @@ const AdminForm = () => {
     resolver: zodResolver(formSchema),
   })
 
-
+const {login} = useAuthContext();
+const Router = useRouter();
 
   const onSubmit = async (data: FormData) => {
-    const formData = new FormData();
-    formData.append('email', data.email)
-    formData.append('password', data.password) // exo :  utiliser setValue
-    setValue('email', data.email); // correct ?
-    // suite du code backend
+//    const response = await login('test@example.com', 'secret123') // eviter const response = await... car typage void
+     
     try {
-      const response = await axios.post("/api/login", {
-      email: formData.get('email'),
-      password: formData.get('password')
-    });
-localStorage.setItem('token', response.data.token) // mauvaise pratique : plutot useContext, useReducer (à la place de Redux rtk)
-
-// if(response.message) {
-
-    // }
-    toast.success("identification reussie")
-    } catch (error) {
-      toast.error("loupé !")
+      await login('test@example.com', 'secret123')
+      Router.push("/dashboard")
     }
+    catch(error) {
+      Router.push("/login")
+    } 
   }
 
   return (

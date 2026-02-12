@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useState } from "react";
+import { error } from "console";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type User = { // same as interface User {} sans =
     id: string
@@ -12,14 +13,36 @@ type AuthContextType = {
     user: User | null
     login: (email: string, password: string) => Promise<void>
     logout: () => void
+    isLogged: boolean
 }
 
 const AuthContext = createContext<AuthContextType|null>(null); // file tsx required
 
-export default function AuthProvider ({children}) {
+export function useAuthContext() {
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error('user not logged')
+    }
+
+    return context;
+} 
+
+export default function AuthProvider ({children}: {children: React.ReactNode}) { // line updated, how to check vercel approval ?
 
     const [user, setUSer] = useState<User|null>(null)
+    const [isLogged, setIsLogged] = useState(true)
 
+    useEffect(()=>{
+        const storedUser = localStorage.getItem('user')   
+        if(storedUser) {
+            setUSer(JSON.parse(storedUser))
+            console.log('ici', JSON.parse(storedUser))
+        } else {
+            console.log('user pas found ici')
+        }
+        setIsLogged(false)
+    },[]);
+    
     const login = async (email: string, password: string) => {
         try{
             const response = await fetch('/api/login', {
@@ -37,9 +60,12 @@ export default function AuthProvider ({children}) {
                 throw new Error('login failed')
             }
 
-            const data:any = response.json();
-            setUSer(data.user);
-            localStorage.setItem('user', JSON.stringify(user))
+            const data:any = await response.json(); // await car typeof : Object
+            console.log(data.user)
+            localStorage.setItem('user', JSON.stringify(data.user))
+            // setUSer(JSON.parse(localStorage.getItem('user')));
+            setUSer(data.user)
+            setIsLogged(true)
         } 
         catch (error) {
             console.error(error)

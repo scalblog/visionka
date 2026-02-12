@@ -45,7 +45,7 @@ console.log('email', email)
 
         delete user.password;
 
-        return NextResponse.json({token: generateToken(user), ...user})
+        return NextResponse.json({user, token: generateToken(user), ...user})
 
     } catch (error) {
         console.log(error);
