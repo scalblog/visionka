@@ -41,7 +41,7 @@ export default function AuthProvider ({children}: {children: React.ReactNode}) {
         }
         setIsLoading(false)
     },[]);
-    
+
     const login = async (email: string, password: string) => {
         try{
             const response = await fetch('/api/login', {
