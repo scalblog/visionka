@@ -32,26 +32,23 @@ export async function POST(request : NextRequest){
         }
 
         const {email,password} = validatedBody.data
-console.log('email', email)
         const user: any = await prisma.user.findFirst({where: {email}});
         if(!user) {
-            return NextResponse.json({message: 'Wrong data'})
+            return NextResponse.json({message: 'Wrong data'}, {status: 401})
         }
 
         const isPasswordMatched = await compare(password, user.password);
         if (!isPasswordMatched) {
-            return NextResponse.json({message: 'Wrong Data'})
+            return NextResponse.json({message: 'Wrong Data'}, {status: 401})
         }
 
         delete user.password;
-
-        return NextResponse.json({token: generateToken(user), ...user})
-
+        const userReturned = {token: generateToken(user), ...user};
+        return NextResponse.json({userReturned}); // obj dans un obj 
     } catch (error) {
         console.log(error);
         return NextResponse.json({message: 'Server fell down'},{status: 500})
     }
-
 }
 
 export async function PATCH(){ // portion
